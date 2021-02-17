@@ -33,7 +33,7 @@ const IndexPage = ({ children }) => {
         background: "linear-gradient(to right,#3c71b5,#753c90)!important",
       }}
     >
-      <Header className="ant-layout bg-white">
+      <Header className="ant-layout bg-white m-0">
         <Menu
           className="bg-white"
           defaultSelectedKeys={["1"]}

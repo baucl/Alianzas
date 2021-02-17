@@ -1,9 +1,7 @@
 import React from "react";
 
 const Faqs = () => {
-
-    return (<div>Desde Faqs</div>)
+  return <div className="container">Desde Faqs</div>;
 };
 
 export default Faqs;
-

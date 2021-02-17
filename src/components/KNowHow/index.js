@@ -1,9 +1,7 @@
 import React from "react";
 
 const KNowHow = () => {
-
-    return (<div>Desde KNowHow</div>)
+  return <div className="container">Desde KNowHow</div>;
 };
 
 export default KNowHow;
-

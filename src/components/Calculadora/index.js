@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
+import { Statistic, Card, Row, Col } from "antd";
 import { Line } from "@ant-design/charts";
 
 const Calculadora = () => {
+
+  const [comision, setComision] = useState(null);
+  const [precioNetoIva, setPrecioNetoIva] = useState(null);
+  const 
+
   const salesData = [];
   const months = [
     "Enero",
@@ -137,11 +144,27 @@ const Calculadora = () => {
   }
 
   return (
-    <div className="container bg-white">
-        <div>
-            
+    <div className="container">
+      <div className="py-5 bg-white mt-5 mb-5 text-center shadow-sm">
+        <div>Calculadora</div>
+      </div>
+      <Row className="bg-white p-5 shadow-sm">
+        <div className="col-sm-12 col-md-12 col-lg-9">
+          <Line {...config} />
         </div>
-      <Line {...config} />
+        <div className="pt-lg-0 pt-5 col-sm-12 col-md-12 col-lg-3">
+          <Card>
+            <Statistic
+              title="Active"
+              value={11.28}
+              precision={2}
+              valueStyle={{ color: "#3f8600" }}
+              prefix={<ArrowUpOutlined />}
+              suffix="%"
+            />
+          </Card>
+        </div>
+      </Row>
     </div>
   );
 };
