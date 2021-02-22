@@ -158,6 +158,18 @@ const IndexPage = ({ children }) => {
               Formulario de contacto
             </Link>
           </Item>
+          <a className="float-right text-decoration-none">
+            <Link
+              className="rounded-lg"
+              style={{
+                textDecoration: "none",
+              }}
+              className="font-weight-bold"
+              to="/login"
+            >
+              Iniciar Sesi&oacute;n
+            </Link>
+          </a>
         </Menu>
       </Header>
       <Content style={{ margin: "0 16px" }}>{children}</Content>

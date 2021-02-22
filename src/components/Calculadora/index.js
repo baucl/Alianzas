@@ -1,13 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
-import { Statistic, Card, Row, Col } from "antd";
+import {
+  Statistic,
+  Card,
+  Row,
+  Col,
+  Form,
+  Input,
+  Button,
+  Radio,
+  Select,
+  Cascader,
+  DatePicker,
+  InputNumber,
+  TreeSelect,
+  Switch,
+} from "antd";
 import { Line } from "@ant-design/charts";
 
 const Calculadora = () => {
-
+  const [precioVentaPublicoNetoIva, setPrecioVentaPublicoNetoIva] = useState(
+    null
+  );
+  const [attrition, setAttrition] = useState(null);
+  const [qDeVenta, setQDeVenta] = useState(null);
+  const [puntosDeVenta, setPuntosDeVenta] = useState(null);
+  const [promedioQMensual, setPromedioQMensual] = useState(null);
+  const [curvaDeExperiencia, setCurvaDeExperiencia] = useState(null);
   const [comision, setComision] = useState(null);
   const [precioNetoIva, setPrecioNetoIva] = useState(null);
-  const 
+  const [ingresoNeto, setingresoNeto] = useState(null);
+  const [componentSize, setComponentSize] = useState("default");
+
+  const onFormLayoutChange = ({ size }) => {
+    setComponentSize(size);
+  };
 
   const salesData = [];
   const months = [
@@ -137,18 +164,94 @@ const Calculadora = () => {
   };
 
   for (let i = 0; i < 12; i += 1) {
+    //setArrayTest(oldArray => [...oldArray, `${months[i]}`]);
     salesData.push({
       x: `${months[i]}`,
       y: `$ ${Math.floor(rentabilidad[i] * 10)}`,
     });
+    //console.log(arrayTest, "prueba");
   }
 
   return (
-    <div className="container">
-      <div className="py-5 bg-white mt-5 mb-5 text-center shadow-sm">
-        <div>Calculadora</div>
+    <div className="row">
+      <div className="p-3 bg-white ml-xs-1 ml-sm-1 ml-md-1 ml-lg-5 mt-5 mb-xs-1 mb-sm-1 mb-md-1 mb-lg-5 mr-xs-1 mr-sm-1 mr-md-1 mr-lg-2 text-center shadow-sm col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <Form
+          labelCol={{
+            span: 4,
+          }}
+          wrapperCol={{
+            span: 14,
+          }}
+          layout="horizontal"
+          initialValues={{
+            size: componentSize,
+          }}
+          onValuesChange={onFormLayoutChange}
+          size={componentSize}
+          className="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+        >
+          <Form.Item label="Form Size" name="size">
+            <Radio.Group>
+              <Radio.Button value="small">Small</Radio.Button>
+              <Radio.Button value="default">Default</Radio.Button>
+              <Radio.Button value="large">Large</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item label="Input">
+            <Input />
+          </Form.Item>
+          <Form.Item label="Select">
+            <Select>
+              <Select.Option value="demo">Demo</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="TreeSelect">
+            <TreeSelect
+              treeData={[
+                {
+                  title: "Light",
+                  value: "light",
+                  children: [
+                    {
+                      title: "Bamboo",
+                      value: "bamboo",
+                    },
+                  ],
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item label="Cascader">
+            <Cascader
+              options={[
+                {
+                  value: "zhejiang",
+                  label: "Zhejiang",
+                  children: [
+                    {
+                      value: "hangzhou",
+                      label: "Hangzhou",
+                    },
+                  ],
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item label="DatePicker">
+            <DatePicker />
+          </Form.Item>
+          <Form.Item label="InputNumber">
+            <InputNumber />
+          </Form.Item>
+          <Form.Item label="Switch">
+            <Switch />
+          </Form.Item>
+          <Form.Item label="Button">
+            <Button>Button</Button>
+          </Form.Item>
+        </Form>
       </div>
-      <Row className="bg-white p-5 shadow-sm">
+      <Row className="bg-white p-5 mb-5 mt-5 shadow-sm col-xs-12 col-sm-12 col-md-12 col-lg-8">
         <div className="col-sm-12 col-md-12 col-lg-9">
           <Line {...config} />
         </div>
